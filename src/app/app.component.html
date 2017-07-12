@@ -4,8 +4,8 @@
       <h1>Soshace Test </h1>
     </div>
     <div class="col-md-7">
-      <button type="button" class="btn btn-success"> Добавить продукт</button>
-      <button type="button" class="btn btn-success"> Добавить категорию</button>      
+      <button type="button" class="btn btn-success" (click)="addItem()"> Добавить товар</button>
+      <button type="button" class="btn btn-success" (click)="addCategory()"> Добавить категорию</button>      
     </div>
   </div>
   <div class="row vertical-align">
@@ -13,7 +13,7 @@
       <app-category-list></app-category-list>
     </div>
     <div class="col-md-7 text-center">
-      <app-item-list></app-item-list>
+      <app-item-list #itemView></app-item-list>
     </div>
   </div>
 </div>

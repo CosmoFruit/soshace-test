@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
-export class Category{
-    constructor(name: string) {}
-}
+import { Category } from '../category';
 
 @Component({
   selector: 'app-category-list',

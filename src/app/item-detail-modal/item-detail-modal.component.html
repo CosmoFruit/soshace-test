@@ -1,0 +1,71 @@
+<div bsModal #changeItemModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header ">      
+        <h4 class="modal-title pull-left" *ngIf="item._id">Изменить товар</h4>
+        <h4 class="modal-title pull-left" *ngIf="!item._id">Добавить товар</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<div class="form-group">
+			<div class="row">
+        		<div class="col-md-4-offset-2">
+               		<label class="form-control-label" for="category">Категория</label>
+            	</div>
+				<div class="col-md-4-offset-2">
+                	<input class="form-control"
+                   			[(ngModel)]="item.category"                                            
+                    		name="category"
+                    		type="text"
+                    />
+            	</div>
+            </div>
+            <div class="row">
+        		<div class="col-md-4-offset-2">
+               		<label class="form-control-label" for="name">Название</label>
+            	</div>
+				<div class="col-md-4-offset-2">
+                	<input class="form-control"
+                   			[(ngModel)]="item.name"                                            
+                    		name="name"
+                    		type="text"
+                    />
+            	</div>
+            </div>            
+            <div class="row">
+        		<div class="col-md-4-offset-2">
+               		<label class="form-control-label" for="priceIn">Закупочная стоимость</label>
+            	</div>
+				<div class="col-md-4-offset-2">
+                	<input class="form-control"
+                   			[(ngModel)]="item.priceIn"                                            
+                    		name="priceIn"
+                    		type="text"
+                    />
+            	</div>
+            </div>
+            <div class="row">
+        		<div class="col-md-4-offset-2">
+               		<label class="form-control-label" for="priceOut">Розничная цена</label>
+            	</div>
+				<div class="col-md-4-offset-2">
+                	<input class="form-control"
+                   			[(ngModel)]="item.priceOut"                                            
+                    		name="priceOut"
+                    		type="text"
+                    />
+            	</div>
+            </div>   
+		</div>
+      </div>
+	<div class="modal-footer">
+		<div class="row text-center">
+        	<button type="button" class="btn btn-success"> Сохранить </button>
+        </div>
+	</div>
+
+    </div>
+  </div>
+</div>

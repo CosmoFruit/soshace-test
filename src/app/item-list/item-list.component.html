@@ -14,9 +14,13 @@
                     <td>{{ item.priceIn }}</td> 
                     <td>{{ item.priceOut }}</td>          
                     <td>
-                    	<button type="button" class="btn btn-danger" (click)="removeItem"> Удалить </button>
-                    	<button type="button" class="btn btn-primary" (click)="changeItem"> Изменить </button>
+                    	<button type="button" class="btn btn-danger" (click)="removeItem(i+1, item)"> Удалить </button>
+                    	<button type="button" class="btn btn-primary" (click)="changeItem(item)"> Изменить </button>
                     </td>           
                 </tr>
             </tbody>
 </table>
+
+<app-item-detail-modal #changeModal [item]="itemSelect"></app-item-detail-modal>
+<app-item-delete-modal #deleteModal [item]="itemRemove" [idx]="itemIdx"></app-item-delete-modal>
+
