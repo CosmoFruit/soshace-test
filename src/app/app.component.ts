@@ -3,6 +3,7 @@ import { Item } from './item';
 import { Category } from './category';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ItemListComponent } from './item-list/item-list.component';
+import { CategoryListComponent } from './category-list/category-list.component';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 export class AppComponent implements OnInit {
 
   @ViewChild('itemView') public itemView: ItemListComponent;
+  @ViewChild('categoryView') public categoryView: CategoryListComponent;
 
   constructor(private viewContainerRef: ViewContainerRef) { }
 
@@ -26,5 +28,6 @@ export class AppComponent implements OnInit {
 
   addCategory() {
   	console.log("call addCategory");
+    this.categoryView.addCategory({});
   }
 }

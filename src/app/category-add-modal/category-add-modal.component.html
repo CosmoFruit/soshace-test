@@ -1,3 +1,35 @@
-<p>
-  category-add-modal works!
-</p>
+<div bsModal #addCategoryModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header ">      
+        <h4 class="modal-title pull-left">Добавить категорию</h4>      
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		<div class="form-group">
+			<div class="row">
+        		<div class="col-md-4 col-md-offset-4">
+               		<label class="form-control-label" for="category">Название</label>
+            	</div>
+				<div class="col-md-8 col-md-offset-2">
+                	<input class="form-control"
+                   			[(ngModel)]="category.name"                                            
+                    		name="category"
+                    		type="text"
+                    />
+            	</div>
+            </div>
+            
+		</div>
+      </div>
+	<div class="modal-footer">
+		<div class="row text-center">
+        	<button type="button" class="btn btn-success"> Сохранить </button>
+        </div>
+	</div>
+
+    </div>
+  </div>
+</div>

@@ -1,14 +1,17 @@
 <div class="row" *ngFor="let category of categories">	
 	<div class="col-md-12">
-		<button type="button" class="btn btn-danger btn-xs" (click)="removeCategory">
+		<button type="button" class="btn btn-danger btn-xs" (click)="removeCategory(category)">
 			<i class="fa fa-trash-o fa-fw"></i>
 		</button>
-		<a (click)="selectCategory"> {{ category.name }}</a>
+		<a (click)="selectCategory(category)"> {{ category.name }}</a>
 	</div>
 </div>
 <hr>
 <div class="row">
 	<div class="col-md-12">
-		<a (click)="selectCategory" > Без категории </a>
+		<a (click)="selectCategory({})" > Без категории </a>
 	</div>
 </div>
+
+<app-category-add-modal  #addModal [category]="categoryAdd"></app-category-add-modal>
+<app-category-delete-modal  #deleteModal [category]="categoryRemove"></app-category-delete-modal>

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input} from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+import { Category } from '../category';
 
 @Component({
   selector: 'app-category-delete-modal',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryDeleteModalComponent implements OnInit {
 
+  @ViewChild ('deleteCategoryModal') public modal: ModalDirective;
+  @Input () category: Category;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public show():void {
+    this.modal.show();
+  }
+ 
+  public hide():void {
+    this.modal.hide();
   }
 
 }
