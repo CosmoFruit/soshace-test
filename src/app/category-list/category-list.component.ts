@@ -15,13 +15,13 @@ export class CategoryListComponent implements OnInit {
   @ViewChild('addModal') public addModal : CategoryAddModalComponent;
   @ViewChild('deleteModal') public deleteModal : CategoryDeleteModalComponent;
   @Output() onChanged = new EventEmitter ();
+  @Output() onFilter = new EventEmitter <string>();
   @Input () categories: Category[];
   
   categoryAdd: Category = new Category;
   categorySelect: Category = new Category; 
-  categoryRemove: Category = new Category; 
+  categoryRemove: Category = new Category;
 
-	// categories: Category[];
 
 
   constructor(private viewContainerRef: ViewContainerRef,
@@ -29,9 +29,12 @@ export class CategoryListComponent implements OnInit {
 
   ngOnInit() { }
 
+  updateFilter(category: Category) {
+    this.onFilter.emit(category.name);
+  }
+
   updateList() {
-     this.onChanged.emit(); 
-     // this.apiService.getCategories().subscribe(result => this.categories = result);
+     this.onChanged.emit();
   }
 
   addCategory(category: Category) {

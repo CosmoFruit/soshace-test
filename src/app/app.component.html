@@ -14,12 +14,14 @@
           #categoryView
           [categories]="c"
           (onChanged)="updateList()"
+          (onFilter)="updateFilter($event)"
       ></app-category-list>
     </div>
     <div class="col-md-7 text-center">
       <app-item-list 
           #itemView
           [categories]="c"
+          [filterargs]="f"
       ></app-item-list>
     </div>
   </div>

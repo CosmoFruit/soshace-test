@@ -17,8 +17,7 @@ export class ItemListComponent implements OnInit {
   @ViewChild('changeModal') public changeModal:ItemDetailModalComponent;
   @ViewChild('deleteModal') public deleteModal:ItemDeleteModalComponent;
   @Input () categories: Category[];
-  // @Input () categorySelect: Category;
-  categorySelect: Category = { name: "руда" };
+  @Input () filterargs: String; 
 
   itemSelect: Item = new Item; 
   itemRemove: Item = new Item; 

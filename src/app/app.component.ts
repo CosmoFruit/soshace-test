@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   @ViewChild('categoryView') public categoryView: CategoryListComponent;
 
   c: Category [];
+  f: String  = "руда";
 
   constructor( private viewContainerRef: ViewContainerRef,
                private apiService: ApiService ) { }
@@ -29,6 +30,10 @@ export class AppComponent implements OnInit {
   updateList() {
     this.apiService.getCategories().subscribe(result => this.c = result);
   }
+
+  updateFilter(arg: String) {
+    this.f = arg;
+  };
 
   addItem() {
   	console.log("call addItem");
