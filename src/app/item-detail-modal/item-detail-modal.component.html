@@ -15,11 +15,12 @@
                		<label class="form-control-label" for="category">Категория</label>
             	</div>
 				<div class="col-md-4-offset-2">
-                	<input class="form-control"
-                   			[(ngModel)]="item.category"                                            
-                    		name="category"
-                    		type="text"
-                    />
+                	<select [(ngModel)]="item.category"
+                    		  name="category"
+                    		  type="text"
+                  >
+                  <option *ngFor="let c of category" [value]="c.name">{{c.name}}</option>
+                  </select>
             	</div>
             </div>
             <div class="row">
@@ -42,7 +43,7 @@
                 	<input class="form-control"
                    			[(ngModel)]="item.priceIn"                                            
                     		name="priceIn"
-                    		type="text"
+                    		type="number"
                     />
             	</div>
             </div>
@@ -54,7 +55,7 @@
                 	<input class="form-control"
                    			[(ngModel)]="item.priceOut"                                            
                     		name="priceOut"
-                    		type="text"
+                    		type="number"
                     />
             	</div>
             </div>   
@@ -62,7 +63,8 @@
       </div>
 	<div class="modal-footer">
 		<div class="row text-center">
-        	<button type="button" class="btn btn-success"> Сохранить </button>
+        	<button *ngIf="!item._id" type="button" class="btn btn-success" (click)="Save()"> Сохранить </button>
+          <button *ngIf="item._id" type="button" class="btn btn-success" (click)="Update()"> Сохранить </button>
         </div>
 	</div>
 

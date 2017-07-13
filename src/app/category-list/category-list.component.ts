@@ -1,8 +1,9 @@
 import { Category } from '../category';
-import { Component, OnInit, ViewChild, ViewContainerRef, Input} from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, Input, EventEmitter, Output} from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { CategoryAddModalComponent } from '../category-add-modal/category-add-modal.component';
 import { CategoryDeleteModalComponent } from '../category-delete-modal/category-delete-modal.component';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-category-list',
@@ -13,24 +14,24 @@ export class CategoryListComponent implements OnInit {
 
   @ViewChild('addModal') public addModal : CategoryAddModalComponent;
   @ViewChild('deleteModal') public deleteModal : CategoryDeleteModalComponent;
+  @Output() onChanged = new EventEmitter ();
+  @Input () categories: Category[];
   
-  categoryAdd: Category;
-  categorySelect: Category; 
-  categoryRemove: Category; 
+  categoryAdd: Category = new Category;
+  categorySelect: Category = new Category; 
+  categoryRemove: Category = new Category; 
 
-	categories: Category[] =
-		[
-        	{ name: "Овощи" },
-       		{ name: "Молочные"},
-        	{ name: "Выпечка"}
-    	];
+	// categories: Category[];
 
-  constructor(private viewContainerRef: ViewContainerRef) { }
 
-  ngOnInit() {
-    this.categoryAdd = {};
-    this.categorySelect = this.categories[0];
-    this.categoryRemove = this.categories[0];
+  constructor(private viewContainerRef: ViewContainerRef,
+              private apiService: ApiService) { }
+
+  ngOnInit() { }
+
+  updateList() {
+     this.onChanged.emit(); 
+     // this.apiService.getCategories().subscribe(result => this.categories = result);
   }
 
   addCategory(category: Category) {

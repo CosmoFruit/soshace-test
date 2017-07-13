@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, Input} from '@angular/core';
+import { Component, OnInit, ViewChild, Input, EventEmitter, Output} from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Category } from '../category';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-category-add-modal',
@@ -11,8 +12,9 @@ export class CategoryAddModalComponent implements OnInit {
   
   @ViewChild ('addCategoryModal') public modal: ModalDirective;
   @Input () category: Category;
+  @Output() onChanged = new EventEmitter ();
 
-  constructor() { }
+  constructor( private apiService: ApiService ) { }
 
   ngOnInit() {
   }
@@ -23,6 +25,14 @@ export class CategoryAddModalComponent implements OnInit {
  
   public hide():void {
     this.modal.hide();
+  }
+
+   Save() {
+    console.log('call api save category...')
+    this.apiService.saveCategory(this.category).subscribe(result=> {
+      this.modal.hide();      
+    });
+    this.onChanged.emit(); 
   }
 
 }

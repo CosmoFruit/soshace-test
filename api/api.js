@@ -25,11 +25,11 @@ var itemSchema = new Schema(
                   required: true
                 },
  		category:     String,
-    price_in:   { 
+    priceIn:   { 
                   type: Number,
                   default: 0
                 },
-    price_out:  {   
+    priceOut:  {   
                   type: Number,
                   default: 0
                 },
@@ -77,7 +77,7 @@ router.post('/item', function(req, res, next) {
 /* UPDATE ITEM */
 router.put('/item', function(req, res, next) {
    	console.log(req.body);
-  	Item.findByIdAndUpdate(req.body.id, req.body, function (err, data) {
+  	Item.findByIdAndUpdate(req.body._id, req.body, function (err, data) {
     						if (err) return next(err);
     						res.json({ ok: "Item this name: '" + data.name + "' was successfully updated." });
   	});
@@ -86,7 +86,7 @@ router.put('/item', function(req, res, next) {
 /* DELETE ITEM */
 router.delete('/item', function(req, res, next) {
    	console.log(req.body);
-  	Item.findByIdAndRemove(req.body.id, function (err, data) {
+  	Item.findByIdAndRemove(req.body._id, function (err, data) {
     						if (err) return next(err);
     						res.json({ ok: "Item this name: '" + data.name + "' was successfully removed." });
   	});
@@ -112,7 +112,7 @@ router.post('/category', function(req, res, next) {
 /* DELETE CATEGORY*/
 router.delete('/category', function(req, res, next) {
     console.log(req.body);
-    Category.findByIdAndRemove(req.body.id, function (err, data) {
+    Category.findByIdAndRemove(req.body._id, function (err, data) {
                 if (err) return next(err);
                 res.json({ ok: "Category this name: '" + data.name + "' was successfully removed." });
     });

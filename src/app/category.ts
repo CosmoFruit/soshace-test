@@ -1,3 +1,7 @@
 export class Category{
-    constructor(name: string) {}
+    name: string;
+
+    constructor( values: Object = {} ) {
+		Object.assign( this, values );
+	}
 }

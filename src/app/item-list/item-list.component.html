@@ -8,7 +8,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of items; let i = index">
+                <tr *ngFor="let item of items ; let i = index">
                 	<td>{{ i+1 }}</td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.priceIn }}</td> 
@@ -21,6 +21,16 @@
             </tbody>
 </table>
 
-<app-item-detail-modal #changeModal [item]="itemSelect"></app-item-detail-modal>
-<app-item-delete-modal #deleteModal [item]="itemRemove" [idx]="itemIdx"></app-item-delete-modal>
+<app-item-detail-modal 
+        #changeModal 
+        [item]="itemSelect"
+        [category]="categories"
+        (onChanged)="updateList()"
+></app-item-detail-modal>
+
+<app-item-delete-modal
+        #deleteModal [item]="itemRemove" 
+        [idx]="itemIdx" 
+        (onRemove)="updateList()"
+></app-item-delete-modal>
 

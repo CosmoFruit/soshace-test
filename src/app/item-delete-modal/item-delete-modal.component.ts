@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, Input} from '@angular/core';
+import { Component, OnInit, ViewChild, Input,  EventEmitter, Output} from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Item } from '../item';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-item-delete-modal',
@@ -12,6 +13,7 @@ export class ItemDeleteModalComponent implements OnInit {
   @ViewChild ('deleteItemModal') public modal: ModalDirective;
   @Input () idx: number;
   @Input () item: Item;
+  @Output() onRemove = new EventEmitter ();
 
   public show():void {
     this.modal.show();
@@ -21,8 +23,16 @@ export class ItemDeleteModalComponent implements OnInit {
     this.modal.hide();
   }
 
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() { }
+
+  remove() {
+    console.log('call api save item...')
+    this.apiService.deleteItem(this.item).subscribe(result=> {
+      this.modal.hide();      
+    });
+    this.onRemove.emit(); 
+  }
 
 }

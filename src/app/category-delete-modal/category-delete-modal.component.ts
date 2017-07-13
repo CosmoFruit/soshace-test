@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, Input} from '@angular/core';
+import { Component, OnInit, ViewChild, Input, EventEmitter, Output} from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Category } from '../category';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-category-delete-modal',
@@ -11,8 +12,9 @@ export class CategoryDeleteModalComponent implements OnInit {
 
   @ViewChild ('deleteCategoryModal') public modal: ModalDirective;
   @Input () category: Category;
+  @Output() onChanged = new EventEmitter ();
 
-  constructor() { }
+  constructor( private apiService: ApiService ) { }
 
   ngOnInit() {
   }
@@ -23,6 +25,14 @@ export class CategoryDeleteModalComponent implements OnInit {
  
   public hide():void {
     this.modal.hide();
+  }
+
+  Remove() {
+    console.log('call api save category...')
+    this.apiService.deleteCategory(this.category).subscribe(result=> {
+      this.modal.hide();      
+    });
+    this.onChanged.emit(); 
   }
 
 }

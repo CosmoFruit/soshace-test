@@ -1,4 +1,12 @@
 export class Item{
-    constructor(_id: string, name: string, priceIn: number, priceOut: number, category: string) {}
+   _id: string;
+   name: string;
+   priceIn: number; 
+   priceOut: number; 
+   category: string;
+
+    constructor( values: Object = {} ) {
+		Object.assign( this, values );
+	}
 }
 

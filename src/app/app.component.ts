@@ -4,6 +4,7 @@ import { Category } from './category';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ItemListComponent } from './item-list/item-list.component';
 import { CategoryListComponent } from './category-list/category-list.component';
+import { ApiService } from './api.service';
 
 @Component({
   selector: 'app-root',
@@ -16,18 +17,26 @@ export class AppComponent implements OnInit {
   @ViewChild('itemView') public itemView: ItemListComponent;
   @ViewChild('categoryView') public categoryView: CategoryListComponent;
 
-  constructor(private viewContainerRef: ViewContainerRef) { }
+  c: Category [];
 
-  ngOnInit(){
+  constructor( private viewContainerRef: ViewContainerRef,
+               private apiService: ApiService ) { }
+
+  ngOnInit(){   
+    this.updateList();
+  }
+
+  updateList() {
+    this.apiService.getCategories().subscribe(result => this.c = result);
   }
 
   addItem() {
   	console.log("call addItem");
-    this.itemView.changeItem({});
+    this.itemView.changeItem(new Item);
   }
 
   addCategory() {
   	console.log("call addCategory");
-    this.categoryView.addCategory({});
+    this.categoryView.addCategory(new Category);
   }
 }

@@ -13,5 +13,13 @@
 	</div>
 </div>
 
-<app-category-add-modal  #addModal [category]="categoryAdd"></app-category-add-modal>
-<app-category-delete-modal  #deleteModal [category]="categoryRemove"></app-category-delete-modal>
+<app-category-add-modal  
+			#addModal 
+			[category]="categoryAdd"
+			(onChanged)="updateList()"
+></app-category-add-modal>
+<app-category-delete-modal  
+			#deleteModal 
+			[category]="categoryRemove"
+			(onChanged)="updateList()"
+></app-category-delete-modal>

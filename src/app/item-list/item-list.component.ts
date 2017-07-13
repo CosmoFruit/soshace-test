@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild, ViewContainerRef, Input} from '@angular/core';
 import { Item } from '../item';
+import { Category } from '../category';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { ItemDetailModalComponent } from '../item-detail-modal/item-detail-modal.component';
 import { ItemDeleteModalComponent } from '../item-delete-modal/item-delete-modal.component';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-item-list',
@@ -14,25 +16,25 @@ export class ItemListComponent implements OnInit {
 	
   @ViewChild('changeModal') public changeModal:ItemDetailModalComponent;
   @ViewChild('deleteModal') public deleteModal:ItemDeleteModalComponent;
+  @Input () categories: Category[];
+  // @Input () categorySelect: Category;
+  categorySelect: Category = { name: "руда" };
 
-  itemSelect: Item; 
-  itemRemove: Item; 
-  itemIdx: number;
-	items: Item[] = 
-    	[
-        	{ _id: "1", name: "Хлеб", priceIn: 15.9, priceOut: 17 },
-       		{ _id: "2", name: "Масло", priceIn: 60, priceOut: 58.9 },
-        	{ _id: "3", name: "Картофель", priceIn: 22.6, priceOut: 22.7 },
-        	{ _id: "4", name: "Сыр", priceIn: 310, priceOut: 310.5}
-    	];
-   
+  itemSelect: Item = new Item; 
+  itemRemove: Item = new Item; 
+  itemIdx: number = 0;
+  items: Item[];
+  
 
-  constructor(private viewContainerRef: ViewContainerRef) { }
+  constructor( private viewContainerRef: ViewContainerRef,
+               private apiService: ApiService ) { }
 
   ngOnInit() {
-    this.itemSelect = this.items[0];
-    this.itemRemove = this.items[0];
-    this.itemIdx = 0;
+    this.updateList ();
+  }
+
+  updateList() {
+    this.apiService.getItems().subscribe(result => this.items = result);
   }
   
   removeItem (idx: number, item: Item) {
