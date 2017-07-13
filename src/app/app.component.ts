@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
 
   c: Category [];
   f: any[];
+  errorMessage: string;
 
   constructor( private viewContainerRef: ViewContainerRef,
                private apiService: ApiService ) { }
@@ -28,7 +29,13 @@ export class AppComponent implements OnInit {
   }
 
   updateList() {
-    this.apiService.getCategories().subscribe(result => this.c = result);
+    this.apiService.getCategories()
+                   .subscribe(
+                      (result: Category[]) => {
+                        this.c = result;
+                      },
+                       error => this.errorMessage = <any> error
+                   );
   }
 
   updateFilter(arg: any[]) {

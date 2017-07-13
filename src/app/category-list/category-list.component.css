@@ -1,3 +1,8 @@
 a { 
 	cursor: pointer; 
 }
+
+.row { 
+	margin: 5px;
+	height: 37px;
+}

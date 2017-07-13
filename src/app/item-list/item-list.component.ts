@@ -24,7 +24,6 @@ export class ItemListComponent implements OnInit {
   itemIdx: number = 0;
   items: Item[];
   
-
   constructor( private viewContainerRef: ViewContainerRef,
                private apiService: ApiService ) { }
 
@@ -33,7 +32,13 @@ export class ItemListComponent implements OnInit {
   }
 
   updateList() {
-    this.apiService.getItems().subscribe(result => this.items = result);
+    this.apiService.getItems()
+                   .subscribe(
+                      (result: Item[]) => {
+                        this.items = result;
+                      },
+                      error => this.errorMessage = <any> error
+                   );
   }
   
   removeItem (idx: number, item: Item) {

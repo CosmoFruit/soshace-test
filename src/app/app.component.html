@@ -1,15 +1,22 @@
 <div class="container marg">
-  <div class="row vertical-align">
-    <div class="col-md-5 text-center">
+  <!-- Error Message -->
+  <div class="row">
+    <div class="col-md-8 col-offset-4 text-center">
+      <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+    </div>
+  </div>
+
+  <div class="row vertical-align">    
+    <div class="col-md-4 text-center">
       <h1>Soshace Test </h1>
     </div>
-    <div class="col-md-7">
+    <div class="col-md-8">
       <button type="button" class="btn btn-success" (click)="addItem()"> Добавить товар</button>
       <button type="button" class="btn btn-success" (click)="addCategory()"> Добавить категорию</button>      
     </div>
   </div>
-  <div class="row vertical-align">
-    <div class="col-md-5 text-center">
+  <div class="row">
+    <div class="col-md-3 listC">
       <app-category-list 
           #categoryView
           [categories]="c"
@@ -17,7 +24,7 @@
           (onFilter)="updateFilter($event)"
       ></app-category-list>
     </div>
-    <div class="col-md-7 text-center">
+    <div class="col-md-9 text-center">
       <app-item-list 
           #itemView
           [categories]="c"
