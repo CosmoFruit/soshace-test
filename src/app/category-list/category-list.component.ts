@@ -15,7 +15,7 @@ export class CategoryListComponent implements OnInit {
   @ViewChild('addModal') public addModal : CategoryAddModalComponent;
   @ViewChild('deleteModal') public deleteModal : CategoryDeleteModalComponent;
   @Output() onChanged = new EventEmitter ();
-  @Output() onFilter = new EventEmitter <string>();
+  @Output() onFilter = new EventEmitter <any[]>();
   @Input () categories: Category[];
   
   categoryAdd: Category = new Category;
@@ -29,8 +29,8 @@ export class CategoryListComponent implements OnInit {
 
   ngOnInit() { }
 
-  updateFilter(category: Category) {
-    this.onFilter.emit(category.name);
+  updateFilter(arg: any[]) {
+    this.onFilter.emit(arg);
   }
 
   updateList() {

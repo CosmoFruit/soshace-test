@@ -3,13 +3,19 @@
 		<button type="button" class="btn btn-danger btn-xs" (click)="removeCategory(category)">
 			<i class="fa fa-trash-o fa-fw"></i>
 		</button>
-		<a (click)="updateFilter(category)"> {{ category.name }}</a>
+		<a (click)="updateFilter(category.name)"> {{ category.name }}</a>
 	</div>
 </div>
 <hr>
 <div class="row">
 	<div class="col-md-12">
-		<a (click)="updateFilter({})" > Без категории </a>
+		<a (click)="updateFilter(['null', categories])" > Без категории </a>
+	</div>
+</div>
+<hr>
+<div class="row">
+	<div class="col-md-12">
+		<a (click)="updateFilter('')" > Все товары </a>
 	</div>
 </div>
 
