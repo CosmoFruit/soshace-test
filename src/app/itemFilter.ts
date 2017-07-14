@@ -22,6 +22,6 @@ export class ItemFilter implements PipeTransform {
     	}
 
     	 //Выбор товаров по категории arg[0]: string;
-        return items.filter(item => item.category.indexOf(arg[0]) !== -1); 
+        return items.filter(item => item.category.indexOf(arg) !== -1); 
     }  
 } 
