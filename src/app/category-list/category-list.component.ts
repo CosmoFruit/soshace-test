@@ -23,13 +23,15 @@ export class CategoryListComponent implements OnInit {
   categoryAdd: Category = new Category;
   categorySelect: Category = new Category; 
   categoryRemove: Category = new Category;
+  activeNav: number = -2;
 
   constructor(private viewContainerRef: ViewContainerRef,
               private apiService: ApiService) { }
 
   ngOnInit() { }
 
-  updateFilter(arg: any[]) {
+  updateFilter(arg: any[], nav: number) {
+    this.activeNav = nav;
     this.onFilter.emit(arg);
   }
 
@@ -38,7 +40,6 @@ export class CategoryListComponent implements OnInit {
   }
 
   addCategory(category: Category) {
-    console.log("call addCategory from list");
     this.categoryAdd = category;    
     this.addModal.show();
   }

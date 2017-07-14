@@ -20,7 +20,7 @@ export class ApiService {
     return this.http
                     .get(ApiUrl, { headers: headers })
                     .map((response: Response) => <Item[]> response.json())
-                    .do(response => console.log(response))
+                    //.do(response => console.log(response))
                     .catch(this.handleError);
   }
 
@@ -33,7 +33,7 @@ export class ApiService {
     return this.http
                     .post(ApiUrl, body, { headers: headers })
                     .map((response: Response) => response.json())
-                    .do(response => console.log(response))
+                    .do(response => console.log(response.ok))
                     .catch(this.handleError);
   }
 
@@ -46,7 +46,7 @@ export class ApiService {
     return this.http
                     .put(ApiUrl, body, { headers: headers })
                     .map((response: Response) => response.json())
-                    .do(response => console.log(response))
+                    .do(response => console.log(response.ok))
                     .catch(this.handleError);
   }
 
@@ -64,7 +64,7 @@ export class ApiService {
     return this.http
                     .request(ApiUrl, options)
                     .map((response: Response) => response.json())
-                    .do(response => console.log(response))
+                    .do(response => console.log(response.ok))
                     .catch(this.handleError);
   }
 
@@ -76,7 +76,7 @@ export class ApiService {
     return this.http
                     .get(ApiUrl, { headers: headers })
                     .map((response: Response) => <Category[]>response.json())
-                    .do(response => console.log(response))
+                    //.do(response => console.log(response))
                     .catch(this.handleError);
 
   }
@@ -90,7 +90,7 @@ export class ApiService {
     return this.http
                     .post(ApiUrl, body, { headers: headers })
                     .map((response: Response) => response.json())
-                    .do(response => console.log(response))
+                    .do(response => console.log(response.ok))
                     .catch(this.handleError);
   }
 
@@ -108,7 +108,7 @@ export class ApiService {
     return this.http
                     .request(ApiUrl, options)
                     .map((response: Response) => response.json())
-                    .do(response => console.log(response))
+                    .do(response => console.log(response.ok))
                     .catch(this.handleError);
   }
 

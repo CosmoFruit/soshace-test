@@ -1,8 +1,8 @@
 a { 
 	cursor: pointer; 
+	font-size: 21px;
 }
 
-.row { 
-	margin: 5px;
-	height: 37px;
-}
+/*.row { 
+	height: 27px;
+}*/

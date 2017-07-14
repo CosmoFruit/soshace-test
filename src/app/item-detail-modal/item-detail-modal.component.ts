@@ -12,40 +12,44 @@ import { ApiService } from '../api.service';
 
 export class ItemDetailModalComponent implements OnInit {
   
-  @ViewChild ('changeItemModal') public changeModal: ModalDirective;
-  @Input () item: Item;
+  @ViewChild ('changeItemModal') public modal: ModalDirective;
+  // @Input () item: Item;
   @Input () category: Category[];
   @Output() onChanged = new EventEmitter ();
+  selectItem: Item = new Item;
   errorMessage: string;
 
   public show():void {
-    this.changeModal.show();
+    this.modal.show();
   }
  
   public hide():void {
-    this.changeModal.hide();
+    this.modal.hide();
   }
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() { }
 
-  Save() {
-    console.log('call api save item...')
-    this.apiService.saveItem(this.item)
+  public Select(item: Item) {
+    this.selectItem = Object.assign(new Item, item);
+    this.show();
+  }
+
+  Save() {   
+    this.apiService.saveItem(this.selectItem)
                    .subscribe((result: any) => {
-                    this.changeModal.hide();
+                    this.modal.hide();
                    },
                     error => this.errorMessage = <any> error
                    );
     this.onChanged.emit(); 
   }
 
-  Update() {
-    console.log('call api save item...')
-    this.apiService.updateItem(this.item)
+  Update() {    
+    this.apiService.updateItem(this.selectItem)
                    .subscribe((result: any) => {
-                    this.changeModal.hide();
+                    this.modal.hide();
                    },
                     error => this.errorMessage = <any> error
                    );

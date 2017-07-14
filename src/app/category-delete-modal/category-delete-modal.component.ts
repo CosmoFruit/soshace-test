@@ -30,7 +30,6 @@ export class CategoryDeleteModalComponent implements OnInit {
   }
 
   Remove() {
-    console.log('call api save category...')
     this.apiService.deleteCategory(this.category)
                    .subscribe(( result: any ) => {
                     this.modal.hide();

@@ -4,13 +4,16 @@
     tabindex="-1" 
     role="dialog" 
     aria-labelledby="mySmallModalLabel" 
-    aria-hidden="true">
+    aria-hidden="true"
+    (onHidden)="myForm.reset()"
+>
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
+    <form #myForm="ngForm" novalidate>
 
       <div class="modal-header ">      
-          <h4 class="modal-title pull-left" *ngIf="item._id">Изменить товар</h4>
-          <h4 class="modal-title pull-left" *ngIf="!item._id">Добавить товар</h4>
+          <h4 class="modal-title pull-left" *ngIf="selectItem._id">Изменить товар</h4>
+          <h4 class="modal-title pull-left" *ngIf="!selectItem._id">Добавить товар</h4>
           <button type="button" class="close pull-right" aria-label="Close" (click)="hide()">
               <span aria-hidden="true">&times;</span>
           </button>
@@ -19,71 +22,79 @@
       <div class="modal-body">		      
           <!-- Error Message -->
           <div class="row">
-              <div class="col-md-8 col-offset-4 text-center">
+              <div class="col-md-12">
                   <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
               </div>
           </div>
+          
+          <div class="form-group">          
+        		  <label class="form-control-label" for="category">Категория</label>
+              <select 
+                     class="form-control" 
+                     [(ngModel)]="selectItem.category"                     
+                     name="category" 
+                     type="text"
+              >
+                  <option *ngFor="let c of category" [value]="c.name">{{c.name}}</option>
+              </select>
+          </div>
+              
+          <div class="form-group"> 
+              <label class="form-control-label" for="name">Название</label>
+              <input 
+                    class="form-control" 
+                    [(ngModel)]="selectItem.name"                    
+                    required 
+                    name="name" 
+                    type="text" 
+              />
+              <div [hidden]="myForm.valid" class="alert alert-danger">
+                  Не указано имя
+              </div>
+          </div>
+				  
+          <div class="form-group">         
+              <label class="form-control-label" for="priceIn">Закупочная стоимость</label>
+              <input 
+                    class="form-control" 
+                    [(ngModel)]="selectItem.priceIn"                    
+                    name="priceIn" 
+                    type="number"
+              />
+          </div>
 
-          <div class="form-group">
-		          <div class="row">
-        		      <div class="col-md-4-offset-2">
-               		   <label class="form-control-label" for="category">Категория</label>
-                  </div>
-				          <div class="col-md-4-offset-2">
-                      <select [(ngModel)]="item.category"
-                    		  name="category"
-                    		  type="text"
-                      >
-                          <option *ngFor="let c of category" [value]="c.name">{{c.name}}</option>
-                      </select>
-                  </div>
-              </div>
-              <div class="row">
-        		      <div class="col-md-4-offset-2">
-               		   <label class="form-control-label" for="name">Название</label>
-                  </div>
-				          <div class="col-md-4-offset-2">
-                      <input class="form-control"
-                          [(ngModel)]="item.name"                                            
-                    		  name="name"
-                    		  type="text"
-                      />
-            	    </div>
-              </div>            
-              <div class="row">
-        		      <div class="col-md-4-offset-2">
-               		    <label class="form-control-label" for="priceIn">Закупочная стоимость</label>
-                  </div>
-				          <div class="col-md-4-offset-2">
-                      <input class="form-control"
-                          [(ngModel)]="item.priceIn"                                            
-                    		  name="priceIn"
-                    		  type="number"
-                      />
-                  </div>
-              </div>
-              <div class="row">
-        		      <div class="col-md-4-offset-2">
-                      <label class="form-control-label" for="priceOut">Розничная цена</label>
-                  </div>
-				          <div class="col-md-4-offset-2">
-                      <input class="form-control"
-                          [(ngModel)]="item.priceOut"                                            
-                    		  name="priceOut"
-                    		  type="number"
-                      />
-                  </div>
-              </div>   
-		      </div>
+          <div class="form-group">  
+              <label class="form-control-label" for="priceOut">Розничная цена</label>
+              <input 
+                    class="form-control" 
+                    [(ngModel)]="selectItem.priceOut"                     
+                    name="priceOut" 
+                    type="number"
+              />
+          </div>          
+
       </div>
 
 	    <div class="modal-footer">
 		      <div class="row text-center">
-              <button *ngIf="!item._id" type="button" class="btn btn-success" (click)="Save()"> Сохранить </button>
-              <button *ngIf="item._id" type="button" class="btn btn-success" (click)="Update()"> Сохранить </button>
+              <button 
+                      *ngIf="!selectItem._id" 
+                      [disabled]="myForm.invalid" 
+                      type="button" 
+                      class="btn btn-success" 
+                      (click)="Save()"
+              > Сохранить </button>
+              <button 
+                      *ngIf="selectItem._id" 
+                      [disabled]="myForm.invalid || !myForm.dirty" 
+                      type="button" 
+                      class="btn btn-success"
+                      (click)="Update()"
+              > Сохранить </button>
           </div>
       </div>
 
+    </form>
     </div>
   </div>
 </div>

@@ -13,7 +13,7 @@ import { ItemDetailModalComponent } from './item-detail-modal/item-detail-modal.
 import { ItemDeleteModalComponent } from './item-delete-modal/item-delete-modal.component';
 import { CategoryDeleteModalComponent } from './category-delete-modal/category-delete-modal.component';
 import { CategoryAddModalComponent } from './category-add-modal/category-add-modal.component';
-import {ItemFilter} from './itemFilter'; 
+import { ItemFilter } from './itemFilter'; 
 
 import { ApiService } from './api.service';
 

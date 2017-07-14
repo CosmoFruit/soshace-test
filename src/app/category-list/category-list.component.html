@@ -1,21 +1,30 @@
-<div class="row" *ngFor="let category of categories">	
+<div class="row" 
+				*ngFor="let category of categories; let i = index" 
+				[ngClass]="{ 'bg-info' : activeNav == i }"
+>	
 	<div class="col-md-12">
-		<button type="button" class="btn btn-danger btn-xs" (click)="removeCategory(category)">
+		<button 
+			   type="button" 
+			   class="btn btn-danger btn-xs" 
+			   (click)="removeCategory(category)"
+			   tooltip="Это удалит категорию."
+        	   placement="right"
+		>
 			<i class="fa fa-trash-o fa-fw"></i>
 		</button>
-		<a (click)="updateFilter(category.name)"> {{ category.name }}</a>
+		<a (click)="updateFilter(category.name, i)"> {{ category.name }}</a>
 	</div>
 </div>
-<hr>
+
 <div class="row">
-	<div class="col-md-12">
-		<a (click)="updateFilter(['null', categories])" > Без категории </a>
+	<div class="col-md-12" [ngClass]="{ 'bg-info' : activeNav == -1 }">
+		<a (click)="updateFilter(['null', categories], -1)" > Без категории </a>
 	</div>
 </div>
-<hr>
+
 <div class="row">
-	<div class="col-md-12">
-		<a (click)="updateFilter('')" > Все товары </a>
+	<div class="col-md-12" [ngClass]="{ 'bg-info' : activeNav == -2 }" >
+		<a (click)="updateFilter('', -2)" > Все товары </a>
 	</div>
 </div>
 

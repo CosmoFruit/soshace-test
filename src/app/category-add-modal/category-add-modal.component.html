@@ -5,9 +5,11 @@
     role="dialog" 
     aria-labelledby="mySmallModalLabel"
     aria-hidden="true"
+    (onHidden)="myForm.reset()"
 >
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
+    <form #myForm="ngForm" novalidate>
 
         <div class="modal-header ">      
             <h4 class="modal-title pull-left">Добавить категорию</h4>      
@@ -19,33 +21,37 @@
         <div class="modal-body">
             <!-- Error Message -->
             <div class="row">
-                <div class="col-md-8 col-offset-4 text-center">
+                <div class="col-md-12">
                     <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
                 </div>
             </div>
             
-		        <div class="form-group">
-		            <div class="row">
-        		        <div class="col-md-4 col-md-offset-4">
-                        <label class="form-control-label" for="category">Название</label>
-                    </div>
-				            <div class="col-md-8 col-md-offset-2">
-                        <input class="form-control"
-                   			    [(ngModel)]="category.name"                                            
+            <div class="form-group">
+	            <label class="form-control-label" for="category">Название</label>
+                <input class="form-control"
+                   			    [(ngModel)]="category.name" 
+                                required                                            
                     		    name="category"
                     		    type="text"
-                        />
-                    </div>
-                </div>           
-		        </div>
+                />
+                <div [hidden]="myForm.valid" class="alert alert-danger">
+                    Не указано имя
+                </div>
+            </div>
         </div>
 
-	      <div class="modal-footer">
-		        <div class="row text-center">
-                <button type="button" class="btn btn-success" (click)="Save()"> Сохранить </button>
+	    <div class="modal-footer">
+		    <div class="row text-center">
+                <button 
+                       type="button" 
+                       class="btn btn-success" 
+                       (click)="Save()"
+                       [disabled]="myForm.invalid"
+                > Сохранить </button>
             </div>
-	      </div>
+	    </div>
 
+    </form>
     </div>
   </div>
 </div>

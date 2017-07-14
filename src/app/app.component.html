@@ -1,7 +1,7 @@
 <div class="container marg">
   <!-- Error Message -->
   <div class="row">
-    <div class="col-md-8 col-offset-4 text-center">
+    <div class="col-md-8 col-md-offset-4 text-center">
       <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
     </div>
   </div>
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3 listC">
+    <div class="col-md-3 col-md-offset-1 listC">
       <app-category-list 
           #categoryView
           [categories]="c"
@@ -24,7 +24,7 @@
           (onFilter)="updateFilter($event)"
       ></app-category-list>
     </div>
-    <div class="col-md-9 text-center">
+    <div class="col-md-8 text-center">
       <app-item-list 
           #itemView
           [categories]="c"

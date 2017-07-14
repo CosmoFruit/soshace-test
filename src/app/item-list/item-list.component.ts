@@ -19,7 +19,7 @@ export class ItemListComponent implements OnInit {
   @Input () categories: Category[];
   @Input () filterargs: any[]; 
 
-  itemSelect: Item = new Item; 
+  // itemSelect: Item = new Item; 
   itemRemove: Item = new Item; 
   itemIdx: number = 0;
   items: Item[];
@@ -51,8 +51,7 @@ export class ItemListComponent implements OnInit {
 
   changeItem(item: Item) {
     console.log("call changeItem");
-    this.itemSelect = item;
-    this.changeModal.show();
+    this.changeModal.Select(item);
   }
 
 }
