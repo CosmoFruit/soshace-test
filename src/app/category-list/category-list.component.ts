@@ -10,6 +10,8 @@ import { ApiService } from '../api.service';
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.css']
 })
+
+
 export class CategoryListComponent implements OnInit {
 
   @ViewChild('addModal') public addModal : CategoryAddModalComponent;
@@ -22,8 +24,6 @@ export class CategoryListComponent implements OnInit {
   categorySelect: Category = new Category; 
   categoryRemove: Category = new Category;
 
-
-
   constructor(private viewContainerRef: ViewContainerRef,
               private apiService: ApiService) { }
 
@@ -34,7 +34,7 @@ export class CategoryListComponent implements OnInit {
   }
 
   updateList() {
-     this.onChanged.emit();
+    this.onChanged.emit();
   }
 
   addCategory(category: Category) {

@@ -1,9 +1,9 @@
 <!-- Error Message -->
-  <div class="row">
+<div class="row">
     <div class="col-md-8 col-offset-4 text-center">
       <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
     </div>
-  </div>
+</div>
 
 <table class="table table-striped">
             <thead>
@@ -21,8 +21,16 @@
                     <td>{{ item.priceIn }}</td> 
                     <td>{{ item.priceOut }}</td>          
                     <td>
-                    	<button type="button" class="btn btn-danger" (click)="removeItem(i+1, item)"> Удалить </button>
-                    	<button type="button" class="btn btn-primary" (click)="changeItem(item)"> Изменить </button>
+                    	<button 
+                                type="button" 
+                                class="btn btn-danger" 
+                                (click)="removeItem(i+1, item)"
+                        > Удалить </button>
+                    	<button 
+                                type="button" 
+                                class="btn btn-primary" 
+                                (click)="changeItem(item)"
+                        > Изменить </button>
                     </td>           
                 </tr>
             </tbody>

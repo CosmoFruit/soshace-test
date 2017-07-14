@@ -23,6 +23,7 @@ export class ItemListComponent implements OnInit {
   itemRemove: Item = new Item; 
   itemIdx: number = 0;
   items: Item[];
+  errorMessage: string;
   
   constructor( private viewContainerRef: ViewContainerRef,
                private apiService: ApiService ) { }

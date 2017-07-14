@@ -8,16 +8,18 @@ import { ApiService } from '../api.service';
   templateUrl: './category-delete-modal.component.html',
   styleUrls: ['./category-delete-modal.component.css']
 })
+
+
 export class CategoryDeleteModalComponent implements OnInit {
 
   @ViewChild ('deleteCategoryModal') public modal: ModalDirective;
   @Input () category: Category;
   @Output() onChanged = new EventEmitter ();
+  errorMessage: string;
 
   constructor( private apiService: ApiService ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   public show():void {
     this.modal.show();
@@ -29,9 +31,12 @@ export class CategoryDeleteModalComponent implements OnInit {
 
   Remove() {
     console.log('call api save category...')
-    this.apiService.deleteCategory(this.category).subscribe(result=> {
-      this.modal.hide();      
-    });
+    this.apiService.deleteCategory(this.category)
+                   .subscribe(( result: any ) => {
+                    this.modal.hide();
+                   },
+                    error => this.errorMessage = <any> error
+                   );
     this.onChanged.emit(); 
   }
 

@@ -8,12 +8,15 @@ import { ApiService } from '../api.service';
   templateUrl: './item-delete-modal.component.html',
   styleUrls: ['./item-delete-modal.component.css']
 })
+
+
 export class ItemDeleteModalComponent implements OnInit {
 
   @ViewChild ('deleteItemModal') public modal: ModalDirective;
   @Input () idx: number;
   @Input () item: Item;
   @Output() onRemove = new EventEmitter ();
+  errorMessage: string;
 
   public show():void {
     this.modal.show();
@@ -29,9 +32,12 @@ export class ItemDeleteModalComponent implements OnInit {
 
   remove() {
     console.log('call api save item...')
-    this.apiService.deleteItem(this.item).subscribe(result=> {
-      this.modal.hide();      
-    });
+    this.apiService.deleteItem(this.item)
+                   .subscribe((result: any) => {
+                    this.modal.hide();
+                   },
+                    error => this.errorMessage = <any> error
+                   );
     this.onRemove.emit(); 
   }
 
